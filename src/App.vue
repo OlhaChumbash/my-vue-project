@@ -1,26 +1,32 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-</template>
+    <PageLayout> 
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+      <template #header> 
+        <h1>Info</h1> 
+      </template>
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+      <template #default>         
+        <UserInfo 
+          v-for="(item, index) in users" :key="index"  :name="item.name"  :age="item.age" />         
+      </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+      <template #footer> 
+        This is footer
+      </template>
+      
+    </PageLayout>
+  </template>
+  
+  <script setup>
+  import PageLayout from './components/PageLayout.vue';
+  import UserInfo from './components/UserInfo.vue';
+  import { ref } from 'vue';
+  
+
+  const users = ref([
+    { name: 'Oleksandr', age: 30 },
+    { name: 'Victor', age: 25 },
+    { name: 'Kateryna', age: 15 }
+  ]);
+  </script>
+  
